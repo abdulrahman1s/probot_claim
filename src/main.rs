@@ -9,9 +9,7 @@ use std::{fs, vec};
 async fn main() {
     let mut test = std::env::current_dir().unwrap().into_os_string();
     test.push("\\NopeCHA\\dist\\chrome");
-    println!("{test:?}");
     let data = fs::read_to_string("./probot_tokens.txt").expect("Unable to read file");
-    println!("{data}");
     let tokens = data.split("\n");
     for token in tokens {
         spawn(token.to_string(), test.to_str().unwrap());
