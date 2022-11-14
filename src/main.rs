@@ -17,8 +17,7 @@ async fn main() {
 }
 
 fn spawn(token: String, path: &str) {
-    let probot = String::from("https://probot.io/daily");
-    let daily = String::from("https://probot.io/daily");
+    let probot_daily = String::from("https://probot.io/daily");
     let browser = Browser::new(
         LaunchOptions::default_builder()
             .disable_default_args(true)
@@ -30,8 +29,8 @@ fn spawn(token: String, path: &str) {
     )
     .unwrap();
     let tab = browser.wait_for_initial_tab().unwrap();
-    tab.navigate_to(&probot)
-        .unwrap_or_else(|_| panic!("couldn't navigate to \"{}\"!", &probot));
+    tab.navigate_to(&probot_daily)
+        .unwrap_or_else(|_| panic!("couldn't navigate to \"{}\"!", &probot_daily));
     tab.wait_for_element("body")
         .unwrap()
         .call_js_fn(
@@ -42,8 +41,8 @@ fn spawn(token: String, path: &str) {
             false,
         )
         .unwrap();
-    tab.navigate_to(&daily)
-        .unwrap_or_else(|_| panic!("couldn't navigate to \"{}\"!", &daily));
+    tab.navigate_to(&probot_daily)
+        .unwrap_or_else(|_| panic!("couldn't navigate to \"{}\"!", &probot_daily));
     tab.wait_for_element(".sidebar_ltr__kXJvp ").unwrap();
     tab.wait_for_element(".daily-logo-text")
         .unwrap()
